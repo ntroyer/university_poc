@@ -47,25 +47,7 @@ class _UniversityListState extends State<UniversityList> {
   @override
   void initState() {
     super.initState();
-    /*showDialog(
-      barrierDismissible: false,
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          content: Row(children: [
-            const CircularProgressIndicator(
-              backgroundColor: Colors.red,
-            ),
-            Container(
-              margin: const EdgeInsets.only(left: 7),
-              child: const Text('Fetching universities...'),
-            )
-          ]),
-        );
-      }
-    );*/
     fetchUniversities().then((unis) {
-      // Navigator.pop(context);
       setState(() {
         universityList = unis;
       });
@@ -75,24 +57,34 @@ class _UniversityListState extends State<UniversityList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('${widget.countryName} Universities'),
-      ),
-      body: ListView.builder(
-        itemCount: universityList.length,
-        itemBuilder: (ctx, index) => ListTile(
-          title: Text(universityList[index].name),
-          onTap: () {
-            showModalBottomSheet(
-              context: context,
-              builder: (ctx) => UniversityModal(
-                name: universityList[index].name,
-                webPages: universityList[index].webPages,
-              ),
-            );
-          },
+        appBar: AppBar(
+          title: Text('${widget.countryName} Universities'),
         ),
-      ),
-    );
+        body: FutureBuilder<List<University>>(
+          future: fetchUniversities(),
+          builder: (ctx, snapshot) {
+            if (snapshot.data != null) {
+              return ListView.builder(
+                itemCount: universityList.length,
+                itemBuilder: (ctx, index) => ListTile(
+                  title: Text(universityList[index].name),
+                  onTap: () {
+                    showModalBottomSheet(
+                      context: context,
+                      builder: (ctx) => UniversityModal(
+                        name: universityList[index].name,
+                        webPages: universityList[index].webPages,
+                      ),
+                    );
+                  },
+                ),
+              );
+            } else {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          },
+        ));
   }
 }
