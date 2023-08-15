@@ -15,32 +15,27 @@ class UniversityModal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          Text(
-            'Websites for $name',
-            textAlign: TextAlign.center,
-            style: GoogleFonts.lato(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 12),
-          ...webPages
-              .map((page) => SelectableText(
-                    page,
-                    style: GoogleFonts.lato(),
-                    onTap: () {
-                      launchUrl(Uri.parse(page));
-                    },
-                  ))
-              .toList(),
-        ],
+    return AlertDialog(
+      title: Text(
+        'Websites for $name',
+        textAlign: TextAlign.center,
+        style: GoogleFonts.lato(
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+        ),
       ),
+      content: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+        ...webPages.map((page) => SelectableText(
+          page,
+          style: GoogleFonts.lato(),
+          onTap: () {
+            launchUrl(Uri.parse(page));
+          },
+        )).toList(),
+      ]),
     );
   }
 }

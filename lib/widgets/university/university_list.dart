@@ -71,7 +71,7 @@ class _UniversityListState extends State<UniversityList> {
                     style: GoogleFonts.lato(fontSize: 14),
                   ),
                   onTap: () {
-                    showModalBottomSheet(
+                    showDialog(
                       context: context,
                       builder: (ctx) => UniversityModal(
                         name: universityList[index].name,
