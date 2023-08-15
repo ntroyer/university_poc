@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -22,11 +23,6 @@ class UniversityList extends StatefulWidget {
 
 class _UniversityListState extends State<UniversityList> {
   List<University> universityList = [];
-  List<University> testList = [
-    University(
-        name: 'Royal Holloway University of London',
-        webPages: ['https://myport.port.ac.uk'])
-  ];
 
   Future<List<University>> fetchUniversities() async {
     String url =
@@ -58,7 +54,10 @@ class _UniversityListState extends State<UniversityList> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('${widget.countryName} Universities'),
+          title: Text(
+            '${widget.countryName} Universities',
+            style: GoogleFonts.lato(),
+          ),
         ),
         body: FutureBuilder<List<University>>(
           future: fetchUniversities(),
@@ -67,7 +66,10 @@ class _UniversityListState extends State<UniversityList> {
               return ListView.builder(
                 itemCount: universityList.length,
                 itemBuilder: (ctx, index) => ListTile(
-                  title: Text(universityList[index].name),
+                  title: Text(
+                    universityList[index].name,
+                    style: GoogleFonts.lato(fontSize: 14),
+                  ),
                   onTap: () {
                     showModalBottomSheet(
                       context: context,
