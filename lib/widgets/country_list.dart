@@ -5,7 +5,10 @@ import 'package:university_poc/models/country.dart';
 import 'package:university_poc/widgets/university/university_list.dart';
 
 class CountryList extends StatefulWidget {
-  const CountryList({super.key, required this.title});
+  const CountryList({
+    super.key,
+    required this.title,
+  });
 
   final String title;
 
