@@ -59,17 +59,20 @@ class _CountryListState extends State<CountryList> {
     Country(
       name: 'India',
       flagUrl: 'https://flagcdn.com/w320/in.png',
+    ),
+    Country(
+      name: 'Australia',
+      flagUrl: 'https://flagcdn.com/w320/au.png',
+    ),
+    Country(
+      name: 'New Zealand',
+      flagUrl: 'https://flagcdn.com/w320/nz.png',
     )
   ];
 
   @override
   void initState() {
     super.initState();
-    /*fetchCountryList().then((value) {
-      setState(() {
-        countryList = value;
-      });
-    });*/
     countryList = testList;
   }
 
