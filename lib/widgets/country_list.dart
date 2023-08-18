@@ -19,8 +19,6 @@ class CountryList extends StatefulWidget {
 }
 
 class _CountryListState extends State<CountryList> {
-  late Future<List<Country>> futureCountryList;
-
   List<Country> countryList = [];
   List<Country> testList = [
     Country(

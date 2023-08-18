@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_web_browser/flutter_web_browser.dart';
 
 class UniversityModal extends StatelessWidget {
   const UniversityModal({
@@ -32,7 +32,7 @@ class UniversityModal extends StatelessWidget {
           page,
           style: GoogleFonts.lato(),
           onTap: () {
-            launchUrl(Uri.parse(page));
+            FlutterWebBrowser.openWebPage(url: page);
           },
         )).toList(),
       ]),
